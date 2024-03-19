@@ -1,0 +1,17 @@
+@use '/src/variables';
+
+
+.footer {
+  position: relative;
+  width: 100%;
+  margin: .25rem auto;
+}
+
+.attribution {
+  font-size: .75rem;
+  text-align: center;
+}
+
+.attribution a {
+  color: variables.$shady-neon-blue;
+}

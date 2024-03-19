@@ -1,0 +1,18 @@
+<div class="container">
+  <!-- <div class="row"> -->
+  <!-- <div class="column"> -->
+  <app-step-tracker-icons class="nav"></app-step-tracker-icons>
+  <!-- </div> -->
+  <!-- <div class="column"> -->
+  <mat-stepper hide-header #stepper>
+    <mat-step *ngFor="let step of steps | async; let i = index">
+      <ng-template matStepContent>
+        <app-step-page-wrapper [item]="step" [stepIndex]="i" [stepsLength]="(steps | async)?.length"
+          (onGoForward)="goForward(stepper)" (onGoBack)="goBack(stepper)" (setStepperIndex)="moveStepper($event)">
+        </app-step-page-wrapper>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+  <!-- </div> -->
+  <!-- </div> -->
+</div>

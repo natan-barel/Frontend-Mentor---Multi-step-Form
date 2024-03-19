@@ -1,0 +1,8 @@
+<div class="step-display">
+  <div *ngFor="let step of steps | async; let i = index" class="step">
+    <div class="step_number" [ngClass]="{'selected' : (currentStep | async) === i }"> {{i+1}}</div>
+    <div class="step_details">
+      <div class="step_title">Step {{i+1}}</div>
+      <div class="step_description">{{step.description}}</div>
+    </div>
+  </div>

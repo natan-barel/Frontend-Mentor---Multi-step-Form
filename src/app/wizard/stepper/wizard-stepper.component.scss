@@ -1,0 +1,66 @@
+@use "/src/variables";
+
+@media (max-width: 37.5em) {
+    .container {
+
+        min-height: calc(100vh - 15.625rem);
+
+    }
+
+}
+
+
+.progress {
+    display: none;
+}
+
+
+form {
+    height: fit-content;
+}
+
+form label {
+    margin-bottom: .25rem !important;
+    padding-block-end: 0.25rem;
+}
+
+@media (min-width: 37.5em) {
+    :host {
+        @include variables.flexCenter(column);
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        background: variables.$bright-white;
+        box-shadow: 0 1.5rem 2.5rem -1.25rem rgba(0, 0, 0, 0.0951141);
+        border-radius: 1rem;
+        padding: 1rem;
+        // margin: auto auto;
+        width: 58.75rem;
+    }
+
+    .row {
+        @include variables.flexSpaceBetween(row);
+    }
+
+    .column {
+        @include variables.flexSpaceBetween(column);
+    }
+
+    form {
+        background-color: variables.$bright-white;
+        border-radius: .25rem;
+        @include variables.flexSpaceBetween(column);
+        align-items: baseline;
+    }
+
+    .progress {
+        display: block;
+    }
+
+    app-progress-nav {
+        position: relative;
+    }
+
+}

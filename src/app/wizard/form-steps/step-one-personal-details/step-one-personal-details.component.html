@@ -1,0 +1,41 @@
+<ng-container [formGroup]="stepForm">
+  <mat-card class="step-one">
+    <mat-card-header>
+      <mat-card-title-group class="title">
+        <mat-card-title role="heading" aria-level="1">Personal info</mat-card-title>
+        <mat-card-subtitle role="heading" aria-level="2" role="heading" aria-level="2">Please provide your name, email
+          address, and phone number.</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="form-controls">
+      <!-- name input -->
+      <div class="input-details">
+        <label for="name">Name</label>
+        <label for="error" *ngIf="this.stepForm.controls['name'].invalid && this.stepForm.controls['name'].touched"
+          class="error-alert">{{formErrors['name']}}</label>
+      </div>
+      <input type="text" matInput name="name" id="name" formControlName="name" placeholder="e.g. Stephen King"
+        autocomplete="given-name" />
+      <!-- email input -->
+      <div class="input-details">
+        <label for="email">Email Address</label>
+        <label for="error" *ngIf="this.stepForm.controls['email'].invalid && this.stepForm.controls['email'].touched"
+          class="error-alert">{{formErrors['email']}}</label>
+      </div>
+      <input type="email" matInput name="email" id="email" formControlName="email"
+        placeholder="e.g. stephenking@lorem.com" autocomplete="off" />
+      <!-- phone number input -->
+      <div class="input-details">
+        <label for="phone">Phone Number</label>
+        <label for="error" *ngIf="this.stepForm.controls['phone'].invalid && this.stepForm.controls['phone'].touched"
+          class="error-alert">{{formErrors['phone']}}</label>
+      </div>
+      <input type="text" matInput name="phone" id="phone" formControlName="phone" placeholder="e.g. +1 234 567 890"
+        autocomplete="tel" />
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<app-stepper-buttons [hasBackStep]="hasBack()" [hasNextStep]="hasNext()" (onStepGoBack)="goToBackStep()"
+  (onStepGoNext)="submit()">
+</app-stepper-buttons>

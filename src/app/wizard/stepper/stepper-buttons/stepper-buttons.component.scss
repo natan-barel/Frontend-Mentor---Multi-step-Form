@@ -1,0 +1,28 @@
+@use '/src/variables';
+
+:host {
+  @include variables.flexSpaceBetween(row);
+  width: 100%;
+  bottom: 0;
+  background-color: variables.$bright-white;
+}
+
+.btn-next {}
+
+.btn-prev {
+  color: variables.$bright-manatee;
+  background-color: white;
+
+  &:hover {
+    color: variables.$sub-nautical;
+  }
+}
+
+.btn-confirm {
+  background-color: variables.$shady-neon-blue;
+}
+
+.btn-next:disabled,
+.btn-confirm:disabled {
+  background-color: variables.$lavender-blue-shadow;
+}
