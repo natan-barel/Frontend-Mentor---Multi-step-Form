@@ -26,9 +26,9 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 Users should be able to:
 
 - :white_check_mark: Complete each step of the sequence
-- [x] See a summary of their selections on the final step and confirm their order
-- [x] View the optimal layout for the interface depending on their device's screen size
-- [x] See hover and focus states for all interactive elements on the page
+- :white_check_mark: See a summary of their selections on the final step and confirm their order
+- :white_check_mark: View the optimal layout for the interface depending on their device's screen size
+- :white_check_mark: See hover and focus states for all interactive elements on the page
 ## Links
 
 
