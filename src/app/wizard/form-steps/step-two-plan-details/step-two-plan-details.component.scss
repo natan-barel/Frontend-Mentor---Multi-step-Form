@@ -43,17 +43,13 @@ img {
 }
 
 .details {
-  height: 4.25rem;
+  // height: 4.25rem;
   padding-top: .5rem;
   text-align: left;
   @include variables.flexCenter(column);
   align-items: flex-start;
   justify-content: flex-start;
   width: 11.5rem;
-}
-
-.details * {
-  display: inline-block;
 }
 
 .plan_title {
@@ -125,10 +121,6 @@ label {
 
   img {
     margin-top: 0;
-  }
-
-  .details {
-    height: 4.25rem;
   }
 
   .toggle {

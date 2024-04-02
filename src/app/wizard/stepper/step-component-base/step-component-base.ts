@@ -56,7 +56,7 @@ export class StepComponentBase
   }
 
   hasNext(): boolean {
-    return (this.stepsLength ? this.stepIndex !== this.stepsLength - 1 : false) && this.formService.getFormGroupRefByIndex(this.stepIndex).valid
+    return (this.stepsLength ? this.stepIndex !== this.stepsLength - 1 : false) && this.formService.getFormGroupRefByIndex(this.stepIndex)?.valid
   }
 
   hasBack(): boolean {

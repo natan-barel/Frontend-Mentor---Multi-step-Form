@@ -17,6 +17,8 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { MaterialModule } from './material.module';
 import { WizardModule } from '@wizard/wizard.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { multiStepFormReducer } from './store/multi-step-form.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     // ReactiveFormsModule,
     // MaterialModule,
     WizardModule,
+    StoreModule.forRoot({ multiStepForm: multiStepFormReducer }),
     StoreDevtoolsModule.instrument({})
   ],
   providers: [

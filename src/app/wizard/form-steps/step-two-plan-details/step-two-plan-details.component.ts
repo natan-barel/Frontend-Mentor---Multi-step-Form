@@ -1,25 +1,27 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { planOptions, planType, timeFrame } from './planDetails.model';
 import { StepComponentBase } from '@wizard/stepper/step-component-base/step-component-base';
 import { FormService } from '@wizard/services/form.service';
+import { Store } from '@ngrx/store';
+import { updateForm } from 'src/app/store/multi-step-form.action';
 
 @Component({
   selector: 'app-step-two-plan-details',
   templateUrl: './step-two-plan-details.component.html',
   styleUrls: ['./step-two-plan-details.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class StepTwoPlanDetailsComponent extends StepComponentBase implements OnInit {
-  stepForm: FormGroup;
+  @Input() stepForm!: FormGroup;
   planType: planType = planType.ARCADE;
   timeFrame: timeFrame = timeFrame.MONTHLY;
   totalCost: number = 0;
   checked = false;
   planOptions = planOptions;
 
-  constructor(protected override formService: FormService, protected override cdr: ChangeDetectorRef, private fb: FormBuilder) {
+  constructor(protected override formService: FormService, protected override cdr: ChangeDetectorRef, private store: Store) {
     super(formService, cdr)
   }
 
@@ -28,9 +30,22 @@ export class StepTwoPlanDetailsComponent extends StepComponentBase implements On
     this.timeFrame = this.stepForm.controls['duration'].value || timeFrame.MONTHLY;
   }
 
-  public onPlanChange(plan: planType) {
-    console.log('onPlanChange', this.planType);
-    this.planType = plan;
+  override submit() {
+    console.log(this.stepForm.value);
+    this.store.dispatch(
+      updateForm({
+        stepFormState: {
+          planDetails: {
+            ...this.stepForm.value
+          }
+        }
+      })
+    )
+    this.goToNextStep();
+  }
+
+  public onPlanChange(planType: planType) {
+    this.planType = planType;
   }
 
   updatePlanType(plan: planType, cost?: number) {
@@ -46,7 +61,7 @@ export class StepTwoPlanDetailsComponent extends StepComponentBase implements On
   }
 
   updateDuration() {
-    const planDetails = this.planOptions[this.planOptions.findIndex(p => p.plan == this.planType)].duration[this.timeFrame];
+    const planDetails = this.planOptions[this.planOptions.findIndex(p => p.type == this.planType)].duration[this.timeFrame];
     this.stepForm.patchValue({
       plan: this.planType
     })

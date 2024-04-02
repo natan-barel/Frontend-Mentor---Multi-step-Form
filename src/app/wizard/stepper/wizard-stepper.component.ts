@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { StepFiveConfimComponent } from '@wizard/form-steps/step-five-confim/step-five-confim.component';
 import { StepFourSummaryComponent } from '@wizard/form-steps/step-four-summary/step-four-summary.component';
 import { StepOnePersonalDetailsComponent } from '@wizard/form-steps/step-one-personal-details/step-one-personal-details.component';
 import { StepThreeAddOnsComponent } from '@wizard/form-steps/step-three-add-ons/step-three-add-ons.component';
@@ -85,7 +86,8 @@ export class WizardStepperComponent
       { component: StepOnePersonalDetailsComponent, label: '', icon: "user", title: "personal-details", description: "Your info" },
       { component: StepTwoPlanDetailsComponent, label: '', icon: "user", title: "plan-details", description: "Select plan" },
       { component: StepThreeAddOnsComponent, label: '', icon: "user", title: "add-on-details", description: "Add-ons" },
-      { component: StepFourSummaryComponent, label: '', icon: "user", title: "summary", description: "Summary" }
+      { component: StepFourSummaryComponent, label: '', icon: "user", title: "summary", description: "Summary" },
+      { component: StepFiveConfimComponent, label: '', icon: "user", title: "confirm", description: "Confirmation" }
     ];
     this.stepsPagesService.buildSteps(initalSteps);
   }
