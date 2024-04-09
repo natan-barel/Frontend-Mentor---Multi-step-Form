@@ -32,7 +32,7 @@ Users should be able to:
 ## Links
 
 
-<b>Solution URL:</b> [here](https://github.com/natan-barel/Frontend-Mentor-Multi-step-Form) | <b>Live Site URL:</b> [here](https://TODO.netlify.app/)
+<b>Solution URL:</b> [here](https://github.com/natan-barel/Frontend-Mentor-Multi-step-Form) | <b>Live Site URL:</b> [here]
 
 
 
