@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
-import { addOnOptions } from './addOnOptions.model';
+import { AddOn, addOnOptions } from './addOnOptions.model';
 import { StepComponentBase } from '@wizard/stepper/step-component-base/step-component-base';
 import { FormService } from '@wizard/services/form.service';
 import { timeFrame } from '../step-two-plan-details/planDetails.model';
@@ -18,7 +18,6 @@ export class StepThreeAddOnsComponent extends StepComponentBase implements OnIni
   @Input() stepForm!: FormGroup;
   addOnOptions = addOnOptions;
   timeFrame: timeFrame;
-  previousCost = this.formService.getFormGroupRefByName('planDetails')
 
   constructor(protected override formService: FormService, protected override cdr: ChangeDetectorRef, private store: Store) {
     super(formService, cdr)
@@ -29,6 +28,7 @@ export class StepThreeAddOnsComponent extends StepComponentBase implements OnIni
     this.stepForm = this.formService.getFormGroupRefByIndex(this.stepIndex);
     this.store.select(selectFormValueByPath('planDetails')).subscribe(planDetails => {
       this.timeFrame = planDetails.duration
+      console.log('changed time frame', this.timeFrame);
       this.cdr.detectChanges();
       this.updateAddOns();
     })
@@ -50,7 +50,6 @@ export class StepThreeAddOnsComponent extends StepComponentBase implements OnIni
 
 
   updateAddOns() {
-    // const previousTotalCost = this.previousCost.value.totalCost;
 
     let serviceCostUpdated = this.stepForm.value.service ? this.addOnOptions[0].timeFrame[this.timeFrame].addToTotal : 0;
     let storageCostUpdated = this.stepForm.value.storage ? this.addOnOptions[1].timeFrame[this.timeFrame].addToTotal : 0;
@@ -61,36 +60,18 @@ export class StepThreeAddOnsComponent extends StepComponentBase implements OnIni
       storageCost: storageCostUpdated,
       customizationCost: customizationCostUpdated,
     })
-    // this.previousCost.patchValue({
-    //   totalCost: previousTotalCost + serviceCostUpdated + storageCostUpdated + customizationCostUpdated
-    // })
+
   }
 
 
 
 
-  toggleAddOn(event: any, addOn: any) {
-    const previousTotalCost = this.previousCost.value.totalCost
-    let addOnCost = this.addOnOptions[this.addOnOptions.findIndex(a => a.formName == addOn)].timeFrame[this.timeFrame].addToTotal;
+  toggleAddOn(event: any, addOn: AddOn) {
 
-    if (event.checked === true) {
-      this.stepForm.patchValue({
-        [addOn]: true,
-        [addOn.concat('Cost')]: addOnCost,
-      })
-      this.previousCost.patchValue({
-        totalCost: previousTotalCost + addOnCost
-      })
-    }
-
-    if (event.checked === false) {
-      this.stepForm.patchValue({
-        [addOn]: false,
-        [addOn.concat('Cost')]: 0,
-      })
-      this.previousCost.patchValue({
-        totalCost: previousTotalCost - addOnCost
-      })
-    }
+    this.stepForm.patchValue({
+      ...this.stepForm.value,
+      [addOn.formName]: event.checked,
+      [addOn.formName.concat('Cost')]: event.checked ? addOn.timeFrame[this.timeFrame].addToTotal : 0
+    })
   }
 }

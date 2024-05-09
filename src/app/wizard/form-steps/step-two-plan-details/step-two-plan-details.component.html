@@ -11,8 +11,8 @@
       <!-- <mat-button-toggle-group name="options" #group="matButtonToggleGroup" aria-label="planOptions"
         [value]="group.value" (change)="onPlanChange(group.value)"> -->
       <mat-button-toggle-group name="options" #group="matButtonToggleGroup" aria-label="planOptions">
-        <mat-button-toggle *ngFor="let plan of planOptions" [value]="plan.type" [checked]="plan.type === planType"
-          (click)="updatePlanType(plan.type, plan.duration[timeFrame].addToTotal)">
+        <mat-button-toggle *ngFor="let plan of planOptions; trackBy:planeTrackBy" [value]="plan.type"
+          [checked]="plan.type === planType" (click)="updatePlanType(plan.type, plan.duration[timeFrame].addToTotal)">
           <div class="plan">
             <img mat-card-image src="{{ plan.icon }}" alt="plan-icon" />
             <div class="details">

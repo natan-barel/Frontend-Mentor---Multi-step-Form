@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { planOptions, planType, timeFrame } from './planDetails.model';
+import { Plan, planOptions, planType, timeFrame } from './planDetails.model';
 import { StepComponentBase } from '@wizard/stepper/step-component-base/step-component-base';
 import { FormService } from '@wizard/services/form.service';
 import { Store } from '@ngrx/store';
@@ -43,6 +43,8 @@ export class StepTwoPlanDetailsComponent extends StepComponentBase implements On
     )
     this.goToNextStep();
   }
+
+  planeTrackBy = (index, plan: Plan) => plan
 
   public onPlanChange(planType: planType) {
     this.planType = planType;

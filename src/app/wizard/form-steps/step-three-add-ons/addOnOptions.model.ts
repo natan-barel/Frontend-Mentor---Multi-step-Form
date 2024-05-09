@@ -1,5 +1,5 @@
-class AddOn {
-  addOn: string;
+export class AddOn {
+  name: string;
   desc: string;
   formName: string;
   timeFrame: {
@@ -16,7 +16,7 @@ class AddOn {
 
 export const addOnOptions: AddOn[] = [
   {
-    addOn: 'Online service',
+    name: 'Online service',
     desc: 'Access to multiplayer games',
     formName: 'service',
     timeFrame: {
@@ -31,7 +31,7 @@ export const addOnOptions: AddOn[] = [
     },
   },
   {
-    addOn: 'Larger storage',
+    name: 'Larger storage',
     desc: 'Extra 1TB of cloud save',
     formName: 'storage',
     timeFrame: {
@@ -46,7 +46,7 @@ export const addOnOptions: AddOn[] = [
     },
   },
   {
-    addOn: 'Customizable Profile',
+    name: 'Customizable Profile',
     desc: 'Custom theme on your profile',
     formName: 'customization',
     timeFrame: {

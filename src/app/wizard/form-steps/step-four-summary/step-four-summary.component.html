@@ -7,59 +7,58 @@
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
-    <table>
-      <th>
-        <tr>
-          <ng-container *ngIf="planDetails | async as planDetails">
-            <div class="type">{{planDetails.plan | titlecase}} ({{planDetails.duration | titlecase}})
+    <ng-container *ngIf="formValue$ | async as formValue">
+      <table>
+        <th>
+          <tr>
+            <div class="type">{{formValue.planDetails.plan | titlecase}} ({{formValue.planDetails.duration |
+              titlecase}})
               <button mat-button class="btn-change" (click)="changePlan()">Change</button>
 
             </div>
-            <div class="cost">${{planDetails.planCost}}/{{planDetails.duration === 'monthly' ? 'mo' : 'yr'}}</div>
-          </ng-container>
-        </tr>
-      </th>
-      <mat-divider></mat-divider>
-      <ng-container *ngIf="addOnDetails | async as addOnDetails">
-        <ng-container *ngIf="planDetails | async as planDetails">
+            <div class="cost">${{formValue.planDetails.planCost}}/{{formValue.planDetails.duration === 'monthly' ? 'mo'
+              : 'yr'}}</div>
+          </tr>
+        </th>
+        <mat-divider></mat-divider>
 
-          <ng-container *ngIf="addOnDetails.service">
-            <tr>
-              <div class="service">Online Service </div>
-              <div class="service_cost"> +${{addOnDetails.serviceCost }}/{{planDetails.duration === 'monthly' ? 'mo' :
-                'yr'}}</div>
-            </tr>
-          </ng-container>
-          <ng-container *ngIf="addOnDetails.storage">
-            <tr>
-              <div class="service">
-                Larger Storage </div>
-              <div class="service_cost"> +${{addOnDetails.storageCost}}/{{planDetails.duration === 'monthly' ? 'mo' :
-                'yr'}}</div>
-            </tr>
-          </ng-container>
-          <ng-container *ngIf="addOnDetails.customization">
-            <tr>
-              <div class="service">
-                Customizable Profile </div>
-              <div class="service_cost"> +${{addOnDetails.customizationCost}}/{{planDetails.duration === 'monthly' ?
-                'mo'
-                :
-                'yr'}}</div>
-            </tr>
-          </ng-container>
+        <ng-container *ngIf="formValue.addOnDetails.service">
+          <tr>
+            <div class="service">Online Service </div>
+            <div class="service_cost"> +${{formValue.addOnDetails.serviceCost }}/{{formValue.planDetails.duration ===
+              'monthly' ? 'mo' :
+              'yr'}}</div>
+          </tr>
         </ng-container>
-      </ng-container>
-    </table>
-    <ng-container *ngIf="planDetails | async as planDetails">
+        <ng-container *ngIf="formValue.addOnDetails.storage">
+          <tr>
+            <div class="service">
+              Larger Storage </div>
+            <div class="service_cost"> +${{formValue.addOnDetails.storageCost}}/{{formValue.planDetails.duration ===
+              'monthly' ? 'mo' :
+              'yr'}}</div>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="formValue.addOnDetails.customization">
+          <tr>
+            <div class="service">
+              Customizable Profile </div>
+            <div class="service_cost"> +${{formValue.addOnDetails.customizationCost}}/{{formValue.planDetails.duration
+              === 'monthly' ?
+              'mo'
+              :
+              'yr'}}</div>
+          </tr>
+        </ng-container>
+      </table>
+
       <div class="total">
-        <div>Total (per {{planDetails.duration === 'monthly' ? 'month' :
+        <div>Total (per {{formValue.planDetails.duration === 'monthly' ? 'month' :
           'year'}})</div>
-        <div class="cost">${{planDetails.totalCost }}/{{planDetails.duration === 'monthly' ? 'mo' :
+        <div class="cost">${{formValue.planDetails.totalCost }}/{{formValue.planDetails.duration === 'monthly' ? 'mo' :
           'yr'}}</div>
       </div>
     </ng-container>
-
   </mat-card-content>
 </mat-card>
 

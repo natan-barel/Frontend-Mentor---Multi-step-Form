@@ -10,10 +10,10 @@
     <mat-card-content class="addon-section">
       <form [formGroup]="stepForm">
         <mat-checkbox *ngFor="let addOn of addOnOptions" formControlName="{{addOn.formName}}"
-          (change)="toggleAddOn($event, addOn.formName)">
+          (change)="toggleAddOn($event, addOn)">
           <div class="addOn">
             <div class="details">
-              <span class="addon_title">{{addOn.addOn}} </span>
+              <span class="addon_title">{{addOn.name}} </span>
               <span class="addon_desc">{{addOn.desc}} </span>
             </div>
             <span class="addon_price">{{addOn.timeFrame[timeFrame].price}}</span>
